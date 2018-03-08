@@ -102,8 +102,12 @@
 		    .selectAll("circle")
 		    	.data(graph.nodes)
 		    .enter().append("circle")
-		      .attr("r", 5)
-		      .attr("fill", function(d) { return color(d.group); })
+		      .attr("r", 7)
+		      .attr("fill", function(d) { if(d.id == "Valjean") {
+																					return "Black";
+																			}
+																			return color(d.group);
+																		})
 		      .call(d3.drag()
 		          .on("start", dragstarted)
 		          .on("drag", dragged)

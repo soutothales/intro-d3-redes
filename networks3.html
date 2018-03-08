@@ -95,6 +95,8 @@
 		d3.json("artistas-semelhantes.json", function(error, graph) {
 		  if (error) throw error;
 
+			console.log(graph.nodes.filter(d => +d.size > 60))
+
 			console.dir(graph.edges);
 			console.dir(graph.nodes);
 
@@ -110,7 +112,9 @@
 		    	.data(graph.nodes)
 		    .enter().append("circle")
 		      .attr("r", 5)
-		      .attr("fill", function(d) { return color(d.group); })
+		      .attr("fill", function(d) { if(d.label == "Baco Exu do Blues") return "Black";
+																			return color(d.group);
+																		})
 		      .call(d3.drag()
 		          .on("start", dragstarted)
 		          .on("drag", dragged)
